@@ -8,7 +8,7 @@ import service.InittestService;
 public class InittestServiceImp implements InittestService{
 
 	public String test() {
-		
+		System.out.println("服务调用成功");
 		return "index";
 	}
 

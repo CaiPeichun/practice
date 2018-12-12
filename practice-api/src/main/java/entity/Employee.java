@@ -1,5 +1,6 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,11 @@ import org.hibernate.annotations.Generated;
 
 @Entity
 @Table(name="emp")
-public class Employee {
+public class Employee implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
 	@Column(name="EMPNO")

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<!-- 配置数据源 -->
+	<bean id="dataSoyrce" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tiger"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 将数据源加载进来 -->
+		<property name="dataSource" ref="dataSoyrce"></property>
+		<!-- 配置hibernate属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 配置方言 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<!-- 打印sql语句 -->
+				<prop key="show_sql">true</prop>
+			</props>
+		</property>
+		<!-- 配置Hibernate扫描@Entity的位置，开启后可以不使用hbm.xml来定义Entity（POJO）对象与数据库表的关联 -->
+		<property name="packagesToScan">
+			<list>
+				<value>entity</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 使用模板加载会话工长,获取会话 -->
+	<bean id="hibernateTemplate"
+		class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 1事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 开启事务注解 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+</beans>

@@ -24,7 +24,7 @@
 		<param-value>classpath:spring/springmvc.xml</param-value>
 	</init-param>
 	<!-- 配置容器在启动的时候就加载这个servlet并实例化 -->
-	<load-on-startup>1</load-on-startup>
+	<!--  <load-on-startup>1</load-on-startup>-->
 </servlet>
 
 <servlet-mapping>

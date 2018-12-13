@@ -17,6 +17,8 @@
 			<artifactId>practice-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<!-- 当一个war包引用另一个war包时 -->
 		<dependency>
 			<groupId>com.pc</groupId>
 			<artifactId>practice-biz-1</artifactId>
@@ -25,18 +27,9 @@
 			<classifier>api</classifier>
 		</dependency>
 	</dependencies>
-	<!-- 添加tomcat插件 -->
+	
 	<build>
 		<plugins>
-		<!-- 	<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<configuration>
-					<port>8090</port>
-					<path>/</path>
-					
-				</configuration>
-			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>            
 				<artifactId>maven-compiler-plugin</artifactId>          

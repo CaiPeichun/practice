@@ -13,17 +13,7 @@
 	<import resource="../hibernate/hibernate.xml" />
 	<import resource="../dubbo/dubbo-provider.xml" />
 	<context:component-scan base-package="service"></context:component-scan>
-	<!-- 
-	<tx:advice id="txAdvice" transaction-manager="txManager">
-		<tx:attributes>
-			<tx:method name="save*"/>
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut expression="excution(service.impl.*)" id="method"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="method"/>
-	</aop:config> -->
-   <!--   开启事务 -->
+	<context:component-scan base-package="dao"></context:component-scan>
 	
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />   

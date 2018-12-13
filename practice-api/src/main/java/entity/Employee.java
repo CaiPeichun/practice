@@ -1,16 +1,20 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Generated;
-
+/**
+ * 员工表的实体类
+ * @author caipch
+ * @date 2018年12月13日
+ */
 @Entity
 @Table(name="emp")
 public class Employee implements Serializable{
@@ -26,61 +30,52 @@ public class Employee implements Serializable{
 	private String ename;
 	@Column(name="JOB")
 	private String job;
-	@Column(name="MGR")
+	/*@Column(name="MGR")
 	private Integer mgr;
 	@Column(name="HIREDATE")
 	private Date hiredate;
 	@Column(name="SAL")
 	private Integer sal;
 	@Column(name="COMM")
-	private Integer comm;
+	private Integer comm;*/
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="DEPTNO")
+	private Dept dept;
+	
 	public Integer getEmpno() {
 		return empno;
 	}
+
 	public void setEmpno(Integer empno) {
 		this.empno = empno;
 	}
+
 	public String getEname() {
 		return ename;
 	}
+
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
+
 	public String getJob() {
 		return job;
 	}
+
 	public void setJob(String job) {
 		this.job = job;
 	}
-	public Integer getMgr() {
-		return mgr;
+
+	public Dept getDept() {
+		return dept;
 	}
-	public void setMgr(Integer mgr) {
-		this.mgr = mgr;
+
+	public void setDept(Dept dept) {
+		this.dept = dept;
 	}
-	public Date getHiredate() {
-		return hiredate;
+
+	@Override
+	public String toString() {
+		return "员工 [员工编号=" + empno + ", 员工姓名=" + ename + ", 职位=" + job + ", 部门=" + dept.getDname() + "]";
 	}
-	public void setHiredate(Date hiredate) {
-		this.hiredate = hiredate;
-	}
-	public Integer getSal() {
-		return sal;
-	}
-	public void setSal(Integer sal) {
-		this.sal = sal;
-	}
-	public Integer getComm() {
-		return comm;
-	}
-	public void setComm(Integer comm) {
-		this.comm = comm;
-	}
-	public Integer getDeptno() {
-		return deptno;
-	}
-	public void setDeptno(Integer deptno) {
-		this.deptno = deptno;
-	}
-	private Integer deptno;
 }

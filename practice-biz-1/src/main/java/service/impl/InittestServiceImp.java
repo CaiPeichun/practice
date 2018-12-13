@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import service.InittestService;
 
-@Service
+@Service("InittestService")
 public class InittestServiceImp implements InittestService{
 
 	public String test() {

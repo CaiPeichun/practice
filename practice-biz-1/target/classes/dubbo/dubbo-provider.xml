@@ -20,6 +20,8 @@
 	<!--    <bean id="deptServiceImp" class="service.impl.DeptServiceImp"></bean> -->
 	
 	<dubbo:service interface="service.InittestService" ref="InittestService" timeout="50000"></dubbo:service>
-	<bean id="InittestService" class="service.impl.InittestServiceImp"></bean>
+	
 	<dubbo:service interface="service.DeptService" ref="deptService" timeout="50000"></dubbo:service>
+
+	<dubbo:service interface="service.EmployeeService" ref="employeeService" timeout="50000"></dubbo:service>
 </beans>

@@ -34,18 +34,18 @@ public interface DeptService {
 	 * @param id
 	 * @return
 	 */
-	public StatusJson updateDept(Integer id);
+	public StatusJson updateDept(Dept dept);
 	
 	/**
 	 * 查询对应id的某一条记录
 	 * @param id
 	 * @return
 	 */
-	public StatusJson queryDept(Integer id);
+	public Dept queryDept(Integer id);
 	
 	/**
 	 * 查询所有部门
 	 * @return
 	 */
-	public StatusJson queryAll();
+	public List<Dept> queryAll();
 }

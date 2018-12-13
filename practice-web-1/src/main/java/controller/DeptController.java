@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class DeptController {
 	 */
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
 	@ResponseBody
-	public StatusJson getDept(@PathVariable Integer id) {
+	public Dept getDept(@PathVariable Integer id) {
 		
 		return deptService.queryDept(id);
 		
@@ -62,8 +63,26 @@ public class DeptController {
 	
 	@RequestMapping(value="/all",method=RequestMethod.GET)
 	@ResponseBody
-	public StatusJson getAll() {
+	public List<Dept> getAll() {
 		return deptService.queryAll();
+	}
+	
+	/**
+	 * url:/dept?{id}&name=${name}&loc=&{loc}
+	 * @param id
+	 * @param name
+	 * @param loc
+	 * @return
+	 */
+	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	@ResponseBody
+	public StatusJson updateDept(@PathVariable Integer id,@RequestParam Map<String, String> map ) {
+		Dept dept = new Dept();
+		dept.setDeptno(id);
+		dept.setDname(map.get("name"));
+		dept.setLoc(map.get("loc"));
+		return deptService.updateDept(dept);
+		
 	}
 }
 

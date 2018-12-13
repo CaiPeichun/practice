@@ -57,7 +57,7 @@ public class Dept implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Dept [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
+		return "部门 [部门编号=" + deptno + ", 部门名称=" + dname + ", 位置=" + loc + "]";
 	}
 
 }
